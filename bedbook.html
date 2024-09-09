@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Bed Selection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+        }
+        .bed-section {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); /* 5 beds per row */
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .bed {
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+            background-color: #27ae60;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            color: white;
+        }
+        .bed.selected {
+            background-color: #e74c3c;
+        }
+        .bed.unavailable {
+            background-color: gray;
+            cursor: not-allowed;
+        }
+        .book-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .book-btn:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Hospital Bed Booking System</h1>
+</header>
+
+<div class="container">
+    <h2>Select a Bed</h2>
+
+    <!-- Bed Layout -->
+    <div class="bed-section" id="bedSection">
+        <!-- Beds will be generated dynamically -->
+    </div>
+
+    <!-- Booking Button -->
+    <button class="book-btn" onclick="bookBeds()">Book Selected Beds</button>
+
+</div>
+
+<script>
+    const totalBeds = 20; // Total number of beds to display
+    const unavailableBeds = [3, 5, 8]; // Example of unavailable bed numbers
+    const selectedBeds = new Set();
+
+    // Function to render bed layout
+    function renderBeds() {
+        const bedSection = document.getElementById('bedSection');
+        for (let i = 1; i <= totalBeds; i++) {
+            const bed = document.createElement('div');
+            bed.classList.add('bed');
+            bed.innerText = i;
+
+            // Mark bed as unavailable if it's in the unavailableBeds array
+            if (unavailableBeds.includes(i)) {
+                bed.classList.add('unavailable');
+            } else {
+                // Add click event to select/deselect bed
+                bed.addEventListener('click', function() {
+                    if (bed.classList.contains('selected')) {
+                        bed.classList.remove('selected');
+                        selectedBeds.delete(i);
+                    } else {
+                        bed.classList.add('selected');
+                        selectedBeds.add(i);
+                    }
+                });
+            }
+
+            bedSection.appendChild(bed);
+        }
+    }
+
+    // Function to handle booking of selected beds
+    function bookBeds() {
+        if (selectedBeds.size === 0) {
+            alert('Please select at least one bed to book.');
+        } else {
+            alert(`You have booked the following beds: ${[...selectedBeds].join(', ')}`);
+            // Further actions such as saving booking details to the server can be implemented here
+        }
+    }
+
+    // Initial render
+    renderBeds();
+</script>
+
+</body>
+</html>

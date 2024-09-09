@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare Support</title>
+    <style>
+        /* Basic reset */
+        body, h1, h2, p, button {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 20px;
+        }
+
+        /* Container styling */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header styling */
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        /* Block container styling */
+        .block-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        /* Individual block styling */
+        .block {
+            flex: 1;
+            background: #eaf2f8;
+            border: 1px solid #d1e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+        }
+
+        .block:hover {
+            background: #d1e0e0;
+        }
+
+        /* Heading styling */
+        .block h2 {
+            margin-bottom: 15px;
+            color: #3498db;
+        }
+
+        /* Paragraph styling */
+        .block p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        /* Button styling */
+        .block button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .block button:hover {
+            background-color: hwb(204 16% 27%);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Healthcare Support</h1>
+        <div class="block-container">
+            <div class="block" id="admit-patient">
+                <h2>Admit a Patient</h2>
+                <p>Start the admission process for a patient by filling out the required forms and visiting the nearest OPD.</p>
+                <button onclick="window.location.href='HospitalQueuingSystem.html'">Admit Now</button>
+            </div>
+            <div class="block" id="know-more">
+                <h2>Book your Bed </h2>
+                <p>Get your desired bed at desired Duration</p>
+                <button onclick="window.location.href='bedbook.html'">Admit Now</button>
+            </div>
+            <div class="block" id="find-doctor">
+                <h2>Find Doctor Near Me</h2>
+                <p>Locate nearby doctors based on your specialty needs and schedule appointments directly.</p>
+                <button onclick="window.location.href='find_doctor.html'">Find a Doctor</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

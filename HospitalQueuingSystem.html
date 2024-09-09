@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Queuing System</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header */
+        header {
+            background-color: hwb(204 16% 27%);
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        /* Main Layout */
+        main {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        /* Section Styling */
+        section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 45%;
+        }
+
+        /* Headings */
+        h2 {
+            margin-top: 0;
+        }
+
+        /* Queue Container */
+        .queue-container {
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        /* List Styling */
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin-bottom: 5px;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Bed Status */
+        .bed-status {
+            margin-top: 20px;
+        }
+
+        /* Buttons */
+        button {
+            background-color: hwb(204 16% 27%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color:hwb(204 16% 27%);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Hospital Queuing System</h1>
+    </header>
+
+    <main>
+        <section class="queue-section">
+            <h2>Patient Queue</h2>
+            <div class="queue-container">
+                <ul id="patient-queue">
+                    <!-- List of patients will be dynamically inserted here -->
+                </ul>
+            </div>
+            <button id="add-patient-btn">Add Patient</button>
+        </section>
+
+        <section class="bed-availability-section">
+            <h2>Bed Availability</h2>
+            <div class="bed-status">
+                <p>Available Beds: <span id="available-beds">10</span></p>
+                <p>Occupied Beds: <span id="occupied-beds">0</span></p>
+            </div>
+            <button id="admit-patient-btn">Admit Patient</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Hospital Management System</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const availableBedsElement = document.getElementById('available-beds');
+            const occupiedBedsElement = document.getElementById('occupied-beds');
+            const patientQueueElement = document.getElementById('patient-queue');
+
+            let availableBeds = parseInt(availableBedsElement.textContent);
+            let occupiedBeds = parseInt(occupiedBedsElement.textContent);
+
+            document.getElementById('add-patient-btn').addEventListener('click', function() {
+                const newPatient = prompt("Enter patient name:");
+                if (newPatient) {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = newPatient;
+                    patientQueueElement.appendChild(listItem);
+                }
+            });
+
+            document.getElementById('admit-patient-btn').addEventListener('click', function() {
+                if (availableBeds > 0 && patientQueueElement.children.length > 0) {
+                    availableBeds--;
+                    occupiedBeds++;
+
+                    availableBedsElement.textContent = availableBeds;
+                    occupiedBedsElement.textContent = occupiedBeds;
+
+                    patientQueueElement.removeChild(patientQueueElement.children[0]);
+                } else {
+                    alert("No available beds or no patients in queue.");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
