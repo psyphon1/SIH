@@ -84,9 +84,7 @@
             transition: background-color 0.3s ease;
         }
 
-        .block button:hover {
-            background-color: hwb(204 16% 27%);
-        }
+
     </style>
 </head>
 <body>
@@ -110,5 +108,22 @@
             </div>
         </div>
     </div>
+    <script>
+        window.watsonAssistantChatOptions = {
+            integrationID: "2b801c3d-a628-4128-ba02-8bdb14b0ba07", // The ID of this integration.
+            region: "us-south", // The region your integration is hosted in.
+            serviceInstanceID: "c2cdad09-2f6c-43df-acd1-b0fde01e7e37", // The ID of your service instance.
+            onLoad: async (instance) => { await instance.render(); }
+        };
+        setTimeout(function(){
+            const t=document.createElement('script');
+            t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
+            document.head.appendChild(t);
+        });
+
+        function openChatbot() {
+            window.watsonAssistantChatOptions.onLoad(window.watsonAssistantChatOptions);
+        }
+    </script>
 </body>
 </html>
